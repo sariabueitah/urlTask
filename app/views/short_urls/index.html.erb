@@ -1,0 +1,11 @@
+<h1>ShortUrl#index</h1>
+
+<ul>
+    <% @short_urls.each do |short_url| %>
+        <li>
+            <%= link_to short_url  do %>
+                <%= short_url.original_url %> <span style="margin: 0 10px"><%= short_url.code %></span>
+            <%end%>
+        </li>
+    <% end%> 
+</ul>

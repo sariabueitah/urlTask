@@ -1,0 +1,13 @@
+<h1>Short URL Details</h1>
+
+<p>
+  <strong>Original URL:</strong>
+  <%= @short_url.original_url %>
+</p>
+
+<p>
+  <strong>Short Code:</strong>
+  <%= link_to @short_url.code, short_path(@short_url.code) %>
+</p>
+
+<%= link_to "Back to List", short_urls_path %>
