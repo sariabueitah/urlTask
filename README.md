@@ -118,3 +118,5 @@ curl --location 'http://localhost:3000/api/v1/decode' \
 
 - Rate limiting is applied: a maximum of 10 encode requests every 3 minutes.
 - SQLite database is pre-included in the `storage` folder; no additional configuration is required.
+- Collision is resolved by checking if the code exists in the db and generating a new one in case it exists
+- I save the codes and urls in the Database so a restart won't effect me if you don't want to save the data its possible by using base64 or some kind of compression
