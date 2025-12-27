@@ -1,24 +1,120 @@
-# README
+# Short URL API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Rails API for encoding and decoding URLs. This project uses SQLite as the database and provides RESTful endpoints for creating short URLs and retrieving the original URLs.
 
-Things you may want to cover:
+---
 
-* Ruby version
+## Versions
 
-* System dependencies
+- **Node.js:** 24.11.0
+- **Ruby:** 3.4.8
+- **Rails:** 8.1.1
 
-* Configuration
+---
 
-* Database creation
+## Installation
 
-* Database initialization
+Follow these steps to get the project running locally:
 
-* How to run the test suite
+1. **Clone the repository**
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+git clone <your-repo-url>
+cd <your-repo-folder>
+```
 
-* Deployment instructions
+2. **Install Node.js dependencies**
 
-* ...
+```bash
+npm install
+```
+
+3. **Install Ruby dependencies**
+
+```bash
+bundle install
+```
+
+4. **Setup the database**
+
+The project uses SQLite and the database file is included in the `storage` folder. You do not need to install or configure SQLite separately. Just run:
+
+```bash
+rails db:setup
+```
+
+5. **Start the Rails server**
+
+```bash
+rails s
+```
+
+The server will run at: `http://localhost:3000`
+
+---
+
+## API Endpoints
+
+### 1. Encode URL
+
+**Request**
+
+```bash
+curl --location 'http://localhost:3000/api/v1/encode' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data '{
+  "original_url": "https://example.com"
+}'
+```
+
+**Response Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "original_url": "https://example.com",
+    "code": "AhDPBSF"
+  }
+}
+```
+
+---
+
+### 2. Decode URL
+
+**Request**
+
+```bash
+curl --location 'http://localhost:3000/api/v1/decode' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data '{
+  "code": "AhDPBSF"
+}'
+```
+
+**Response Example**
+
+```json
+{
+  "success": true,
+  "data": {
+    "original_url": "https://example.com",
+    "code": "AhDPBSF"
+  }
+}
+```
+
+---
+
+## Notes
+
+- Make sure your requests include the headers:
+
+  - `Content-Type: application/json`
+  - `Accept: application/json`
+
+- Rate limiting is applied: a maximum of 10 encode requests every 3 minutes.
+- SQLite database is pre-included in the `storage` folder; no additional configuration is required.
