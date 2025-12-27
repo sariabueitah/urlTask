@@ -7,7 +7,7 @@ class ShortUrl < ApplicationRecord
   before_validation :fix_url, on: :create
 
   validates :original_url, presence: true
-  validates :code, presence: true, uniqueness: true, length: { is: CODE_LENGTH }
+  validates :code, presence: true, uniqueness: true, length: { is: CODE_LENGTH }, if: -> { original_url.present? }
   validate :check_url, if: -> { original_url.present? }
 
   # check if url starts with http or https add if missing and parse the url to make sure the formate is valid

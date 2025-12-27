@@ -1,25 +1,25 @@
-<h1>Create New Short URL</h1>
+<div class="center-container full-height">
+  <div id="short-urls-new" class="center-main">
+    <h2>Create Your Short Url</h2>
+    <div class="form-container">
+    <%= form_with model: @short_url, local: true do |form| %>
+      <% if @short_url.errors.any? %>
+        <div class="errors">
+          <ul>
+            <% @short_url.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-<%= form_with model: @short_url, local: true do |form| %>
-  <% if @short_url.errors.any? %>
-    <div style="color: red;">
-      <h2><%= pluralize(@short_url.errors.count, "error") %> prevented this URL from being saved:</h2>
-      <ul>
-        <% @short_url.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+      <div class="form">
+        <%= form.text_field :original_url, placeholder: "Put your url here" %>
+        <div class="center-container btn-container">
+          <%= form.submit "Create Short URL", class: "btn" %>
+        </div>
+        
+      </div>
+    <% end %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :original_url %>
-    <%= form.text_field :original_url, placeholder: "https://example.com" %>
-  </div>
-
-  <div>
-    <%= form.submit "Create Short URL" %>
-  </div>
-<% end %>
-
-<%= link_to "Back to List", short_urls_path %>
+</div>

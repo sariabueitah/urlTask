@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  root "short_urls#new"
   resources :short_urls, only: [ :index, :show, :new, :create ]
   get "/:code", to: "short_urls#redirect", as: :short
 end

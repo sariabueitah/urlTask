@@ -1,13 +1,12 @@
-<h1>Short URL Details</h1>
-
-<p>
-  <strong>Original URL:</strong>
-  <%= @short_url.original_url %>
-</p>
-
-<p>
-  <strong>Short Code:</strong>
-  <%= link_to @short_url.code, short_path(@short_url.code) %>
-</p>
-
-<%= link_to "Back to List", short_urls_path %>
+<div class="center-container full-height">
+  <div class="center-main">
+    <h2>This is your URL</h2>
+    <div>
+      <div class="short-container"><%= @short_url.code %></div>
+        <div style="text-align:center">
+          <div>try your url <%= link_to "here", short_path(@short_url.code) %><div>
+          <%= link_to "Create new URL", root_path, class: "btn"%>
+        <div>
+    </div>
+  </div>
+</div>
